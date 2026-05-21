@@ -35,7 +35,7 @@ export function useGoogleSheetData() {
         Papa.parse(text, {
           header: true,
           skipEmptyLines: true,
-          complete: (results) => {
+          complete: (results: any) => {
             // Check if HTML is returned (authentication issue)
             if (text.trim().startsWith('<!DOCTYPE html>')) {
                setError("No se puede acceder a los datos. Asegúrate de que el Google Sheet sea público ('Cualquiera con el enlace' puede ver).");

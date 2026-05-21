@@ -1,4 +1,3 @@
-import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { useGoogleSheetData } from './useData';
 import { Activity, Users, Award, TrendingUp, AlertTriangle } from 'lucide-react';
@@ -97,7 +96,7 @@ function App() {
               <span className="text-4xl font-bold">{latestData.m1_completion}%</span>
             </div>
             <p className="text-sm font-bold text-white mt-1">M1 Completion</p>
-            <p className="text-xs text-neutral-500 mt-1">Meta: >70% completan primer módulo</p>
+            <p className="text-xs text-neutral-500 mt-1">Meta: {">"}70% completan primer módulo</p>
           </div>
           
           <div>
