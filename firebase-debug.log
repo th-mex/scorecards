@@ -1,0 +1,61 @@
+[debug] [2026-05-21T02:36:21.544Z] ----------------------------------------------------------------------
+[debug] [2026-05-21T02:36:21.546Z] Command:       /Users/davidmayo/.nvm/versions/node/v24.14.1/bin/node /Users/davidmayo/.nvm/versions/node/v24.14.1/bin/firebase init hosting --project scorecards --non-interactive
+[debug] [2026-05-21T02:36:21.546Z] CLI Version:   15.18.0
+[debug] [2026-05-21T02:36:21.546Z] Platform:      darwin
+[debug] [2026-05-21T02:36:21.546Z] Node Version:  v24.14.1
+[debug] [2026-05-21T02:36:21.546Z] Time:          Wed May 20 2026 20:36:21 GMT-0600 (Central Standard Time)
+[debug] [2026-05-21T02:36:21.546Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-05-21T02:36:21.547Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/davidmayo/repos/scorecards
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-05-21T02:36:22.098Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-21T02:36:22.099Z] > authorizing via signed-in user (david.mayo@thmex.net)
+[debug] [2026-05-21T02:36:22.099Z] Checked if tokens are valid: false, expires at: 1777311289631
+[debug] [2026-05-21T02:36:22.099Z] Checked if tokens are valid: false, expires at: 1777311289631
+[debug] [2026-05-21T02:36:22.099Z] > refreshing access token with scopes: []
+[debug] [2026-05-21T02:36:22.099Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-05-21T02:36:22.099Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-05-21T02:36:22.295Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-05-21T02:36:22.295Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2026-05-21T02:36:22.311Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2026-05-21T02:36:22.312Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2026-05-21T02:36:22.312Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2026-05-21T02:36:22.490Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at invalidCredentialError (/Users/davidmayo/.nvm/versions/node/v24.14.1/lib/node_modules/firebase-tools/lib/auth.js:177:12)
+    at refreshTokens (/Users/davidmayo/.nvm/versions/node/v24.14.1/lib/node_modules/firebase-tools/lib/auth.js:590:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async getAccessToken (/Users/davidmayo/.nvm/versions/node/v24.14.1/lib/node_modules/firebase-tools/lib/apiv2.js:52:18)
+    at async Client.addAuthHeader (/Users/davidmayo/.nvm/versions/node/v24.14.1/lib/node_modules/firebase-tools/lib/apiv2.js:182:21)
+    at async Client.request (/Users/davidmayo/.nvm/versions/node/v24.14.1/lib/node_modules/firebase-tools/lib/apiv2.js:129:34)
+    at async getFirebaseProject (/Users/davidmayo/.nvm/versions/node/v24.14.1/lib/node_modules/firebase-tools/lib/management/projects.js:361:21)
+    at async usingProject (/Users/davidmayo/.nvm/versions/node/v24.14.1/lib/node_modules/firebase-tools/lib/init/features/project.js:77:16)
+    at async Object.doSetup (/Users/davidmayo/.nvm/versions/node/v24.14.1/lib/node_modules/firebase-tools/lib/init/features/project.js:29:9)
+    at async init (/Users/davidmayo/.nvm/versions/node/v24.14.1/lib/node_modules/firebase-tools/lib/init/index.js:98:13)
+[error] 
+[error] Error: Failed to get Firebase project scorecards. Please make sure the project exists and your account has permission to access it.
