@@ -43,23 +43,63 @@ export function useGoogleSheetData() {
                return;
             }
 
-            const parsedData: ScorecardData[] = results.data.map((row: any) => ({
-              timestamp: row['Timestamp'] || row['Marca temporal'] || row['Fecha'] || new Date().toISOString(),
-              registros_persea: parseFloat(row['Nuevos registros en Persea'] || '0'),
-              footfall_fisico: parseFloat(row['Footfall físico - CDC'] || '0'),
-              m1_completion: parseFloat(row['M1 Completion (%)'] || '0'),
-              redenciones_fisicas: parseFloat(row['Redenciones físicas'] || '0'),
-              pipeline_nanos: parseFloat(row['Pipeline de nanos'] || '0'),
-              ugc_valido: parseFloat(row['UGC Válido (%)'] || '0'),
-              perfiles_activos: parseFloat(row['Perfiles activos'] || '0'),
-              incremento_ticket: parseFloat(row['Incremento de ticket promedio (%)'] || '0'),
-              cpa: parseFloat(row['Costo por adquisición (CPA)'] || '0'),
-              vino_tinto: parseFloat(row['Vino tinto (%)'] || '0'),
-              vino_blanco: parseFloat(row['Vino blanco (%)'] || '0'),
-              espumoso: parseFloat(row['Espumoso (%)'] || '0'),
-              reservas: parseFloat(row['Reservas (%)'] || '0'),
-              otros: parseFloat(row['Otros (%)'] || '0'),
-            }));
+            // Agrupar los datos por Fecha
+            const dataByDate: Record<string, Partial<ScorecardData>> = {};
+
+            results.data.forEach((row: any) => {
+              const date = row['Fecha'] || new Date().toLocaleDateString();
+              
+              if (!dataByDate[date]) {
+                dataByDate[date] = { 
+                  timestamp: date,
+                  registros_persea: 0,
+                  footfall_fisico: 0,
+                  m1_completion: 0,
+                  redenciones_fisicas: 0,
+                  pipeline_nanos: 0,
+                  ugc_valido: 0,
+                  perfiles_activos: 0,
+                  incremento_ticket: 0,
+                  cpa: 0,
+                  vino_tinto: 0,
+                  vino_blanco: 0,
+                  espumoso: 0,
+                  reservas: 0,
+                  otros: 0
+                };
+              }
+
+              const metric = row['ScoreCard'];
+              const value = parseFloat(row['Valor'] || '0');
+
+              if (metric === 'Nuevos registros en Persea') dataByDate[date].registros_persea = value;
+              else if (metric === 'Footfall físico') dataByDate[date].footfall_fisico = value;
+              else if (metric === 'MI Completion') dataByDate[date].m1_completion = value;
+              else if (metric === 'Redenciones Físicas') dataByDate[date].redenciones_fisicas = value;
+              else if (metric === 'Pipeline de Nanos') dataByDate[date].pipeline_nanos = value;
+              else if (metric === 'UGC válido') dataByDate[date].ugc_valido = value;
+              else if (metric === 'Perfiles activos') dataByDate[date].perfiles_activos = value;
+              else if (metric === 'Incremento ticket') dataByDate[date].incremento_ticket = value;
+              else if (metric === 'CPA') dataByDate[date].cpa = value;
+              else if (metric === 'Vino tinto') dataByDate[date].vino_tinto = value;
+              else if (metric === 'Vino blanco') dataByDate[date].vino_blanco = value;
+              else if (metric === 'Espumoso') dataByDate[date].espumoso = value;
+              else if (metric === 'Reservas') dataByDate[date].reservas = value;
+              else if (metric === 'Otros') dataByDate[date].otros = value;
+            });
+
+            // Convertir el objeto a array y ordenar por fecha
+            const parsedData = Object.values(dataByDate).sort((a, b) => {
+              const parseDate = (d: string) => {
+                const parts = d.split('/');
+                // Asume formato DD/MM/YYYY
+                if(parts.length === 3) {
+                  return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).getTime();
+                }
+                return new Date(d).getTime();
+              };
+              return parseDate(a.timestamp as string) - parseDate(b.timestamp as string);
+            }) as ScorecardData[];
             
             setData(parsedData);
             setLoading(false);
