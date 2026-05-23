@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand-gold: #c69c6d;
+  --color-brand-gold-light: #dcb382;
+  --color-brand-gold-dark: #a87e50;
+  --color-brand-dark: #12100e;
+  --color-brand-darker: #0a0908;
+
+  --font-sans: 'Idlewild', 'Montserrat', sans-serif;
+  --font-serif: 'Aviano Copper', 'Cinzel', serif;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
